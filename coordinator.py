@@ -16,7 +16,7 @@ from .api import (
     DriqonAuthError,
     DriqonInvalidApiKeyError,
 )
-from .const import CONF_API_KEY, CONF_API_URL, DOMAIN, UPDATE_INTERVAL_SECONDS
+from .const import DOMAIN, UPDATE_INTERVAL_SECONDS
 from .types import DeviceMap, DriqonConfigEntryData
 
 if TYPE_CHECKING:

@@ -53,24 +53,22 @@ path should be `/config/custom_components/driqon/`. Restart Home Assistant.
 
 ## Configure
 
-1. Go to **Settings → Devices & services → Add integration** and select
+1. Go to **Settings > Devices & services > Add integration** and select
    **DRIQON**.
 2. Enter the email and password used by the DRIQON mobile app.
-3. Enter the Firebase **Web API key** for the Firebase project used by DRIQON.
-4. Keep the API URL as `https://api.driqon.in`, unless your DRIQON deployment
-   uses a different HTTPS address.
 
-The Firebase Web API key identifies the Firebase project used for email and
-password sign-in. It is not a Firebase Admin SDK credential. **Never put a
-Firebase service-account JSON file, Admin SDK private key, backend `.env`, MQTT
-credentials, or database credentials in Home Assistant.** The password is
-used only during sign-in and is not stored. Home Assistant retains the Firebase
-refresh token needed to renew sessions. If that token is revoked, Home
-Assistant asks you to reauthenticate. Use the integration's **Reconfigure**
-action to change its email, API key, or API URL.
-
-The API URL must use HTTPS. Plain HTTP is accepted only for a localhost
-development server.
+The integration uses its bundled Firebase Web API key and the fixed DRIQON API
+address, so neither is requested during setup. A Firebase Web API key is a
+public project identifier, not an authorization secret; Firebase authorization
+comes from the account credentials and the backend's access checks. Restrict
+the key to Firebase APIs and set appropriate quotas in Google Cloud. The
+integration does not contain a Firebase service-account key or Admin SDK
+private key. **Never put a Firebase service-account JSON file, Admin SDK
+private key, backend `.env`, MQTT credentials, or database credentials in Home
+Assistant.** The password is used only during sign-in and is not stored. Home
+Assistant retains the account's Firebase refresh token so it can renew access.
+If that token is revoked, Home Assistant asks you to reauthenticate. Use the
+integration's **Reconfigure** action to reconnect the same account.
 
 ## Examples
 
@@ -99,13 +97,11 @@ result, device count, device types, capabilities, online status, and share
 permission. They omit the account email, device IDs and names, API key, and
 Firebase tokens.
 
-- **Cannot connect:** Check that Home Assistant can reach the API URL and that
-  the URL is HTTPS.
-- **Authentication error:** Check the DRIQON email/password and Firebase Web
-  API key. Firebase email/password sign-in must be enabled for the project.
+- **Cannot connect:** Check that Home Assistant can reach the DRIQON cloud API.
+- **Authentication error:** Check the DRIQON email and password. Firebase
+  email/password sign-in must be enabled for the project.
 - **Account needs reauthentication:** Enter your current DRIQON password in
-  the Home Assistant prompt. You can also replace the Firebase Web API key
-  there.
+  the Home Assistant prompt.
 - **Device unavailable:** Check the device's online status in DRIQON and make
   sure the account still owns or has a share for it.
 - **Switch is view-only:** Ask the DRIQON device owner to grant the account
@@ -133,9 +129,9 @@ All device discovery, state polling, and control are authenticated API
 requests. This integration does not connect to MQTT or contain backend service
 credentials. API failures and logs do not include passwords, access tokens,
 refresh tokens, API keys, or authorization headers. Device IDs, device names,
-and account emails are not included in diagnostics. If you change the API URL,
-use only a DRIQON server you trust: Home Assistant sends Firebase ID tokens to
-that configured HTTPS host. Redirects are not followed.
+and account emails are not included in diagnostics. The integration sends
+Firebase ID tokens only to the fixed DRIQON HTTPS API host. Redirects are not
+followed.
 
 ## Remove
 

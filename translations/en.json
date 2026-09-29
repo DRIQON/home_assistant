@@ -3,38 +3,32 @@
     "step": {
       "user": {
         "title": "Connect DRIQON",
-        "description": "Sign in with your DRIQON account. Use the Firebase Web API key from the DRIQON app project.",
+        "description": "Sign in with your DRIQON account.",
         "data": {
           "email": "Email",
-          "password": "Password",
-          "firebase_api_key": "Firebase Web API key",
-          "api_url": "DRIQON API URL"
+          "password": "Password"
         }
       },
       "reauth_confirm": {
         "title": "Reauthenticate DRIQON",
         "description": "Enter the password for {email} to renew Home Assistant access.",
         "data": {
-          "password": "Password",
-          "firebase_api_key": "Firebase Web API key"
+          "password": "Password"
         }
       },
       "reconfigure": {
         "title": "Reconfigure DRIQON",
-        "description": "Update the account connection. Your password is checked but not saved.",
+        "description": "Reconnect your DRIQON account. Your password is checked but not saved.",
         "data": {
           "email": "Email",
-          "password": "Password",
-          "firebase_api_key": "Firebase Web API key",
-          "api_url": "DRIQON API URL"
+          "password": "Password"
         }
       }
     },
     "error": {
       "cannot_connect": "Could not reach the DRIQON cloud API.",
       "invalid_auth": "The email or password was rejected by Firebase.",
-      "invalid_api_key": "Firebase rejected the Web API key.",
-      "invalid_api_url": "Enter a valid HTTPS API URL. HTTP is allowed only for localhost development.",
+      "invalid_api_key": "The integration Firebase configuration was rejected.",
       "rate_limited": "Too many requests. Wait a little and try again.",
       "account_mismatch": "These credentials belong to a different DRIQON account."
     },

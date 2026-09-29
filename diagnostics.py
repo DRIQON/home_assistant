@@ -6,6 +6,7 @@ from urllib.parse import urlsplit
 from homeassistant.core import HomeAssistant
 
 from . import DriqonConfigEntry, DriqonRuntimeData
+from .const import DEFAULT_API_URL
 
 
 async def async_get_config_entry_diagnostics(
@@ -15,7 +16,7 @@ async def async_get_config_entry_diagnostics(
     """Return account-independent status and device metadata only."""
     runtime: DriqonRuntimeData = entry.runtime_data
     coordinator = runtime.coordinator
-    api_host = urlsplit(entry.data["api_url"]).hostname
+    api_host = urlsplit(DEFAULT_API_URL).hostname
     devices = coordinator.data or {}
     return {
         "api_host": api_host,

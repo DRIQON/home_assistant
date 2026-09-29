@@ -10,8 +10,6 @@ class DriqonConfigEntryData(TypedDict):
     """Non-password configuration data persisted by Home Assistant."""
 
     email: str
-    firebase_api_key: str
-    api_url: str
     refresh_token: str
     uid: str
 
